@@ -2,12 +2,12 @@
  * llist.h
  *
  *  Created on: Nov 3, 2014
- *      Author: Svetah
  */
 
 #ifndef LLIST_H_
 #define LLIST_H_
 
+#include <string>
 
 #define nullptr (void*)0
 
@@ -22,7 +22,7 @@ public:
 
 	virtual bool insert(DataType data);
 
-	void print();
+	void print(std::string & out_buf);
 	bool clean();
 
 private:

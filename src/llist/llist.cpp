@@ -2,12 +2,12 @@
  * llist.cpp
  *
  *  Created on: Nov 3, 2014
- *      Author: Svetah
  */
 
-#include "llist.h"
-
 #include <iostream>
+#include <sstream>
+
+#include "llist.h"
 
 template<typename DataType>
 LList<DataType>::LList()
@@ -37,21 +37,25 @@ bool LList<DataType>::insert(DataType data)
 }
 
 template<typename DataType>
-void LList<DataType>::print()
+void LList<DataType>::print(std::string & out_buf)
 {
 	for(Node *node = this->head->next; (this->head != node); node = node->next)
 	{
-		std::cout << "#" << node->data << "->";
+	    std::ostringstream convert_data;
+	    convert_data << node->data;
+
+	    out_buf = out_buf + "#" + convert_data.str() + "->";
 	}
-	std::cout << "||" << std::endl;
+	out_buf += "||";
 }
 
 template<typename DataType>
 bool LList<DataType>::clean()
 {
-	for(Node *node = this->head->next; (this->head != node); node = node->next)
+	for(Node *node = this->head->next; (this->head != node); )
 	{
 		Node *node_to_del = node;
+		node = node->next;
 		delete node_to_del;
 	}
 	this->head->next = this->head;
