@@ -21,6 +21,15 @@ ifeq ($(UNAME_OS),  $(MINGW_STR))
 	CPPUTEST_CPPFLAGS += -include $(CURDIR)/mingw_prepand.h
 endif
 
+
+# When CPPUTEST_HOME is NOT defined, 
+# it is assumed that the framework has been installed system wide.
+# When defined, the paths to the libs need to be set.
+ifneq ($(CPPUTEST_HOME),)
+	LD_LIBRARIES += -L$(CPPUTEST_HOME)/lib
+endif
+
+
 CPPUTEST_CPPFLAGS += -I$(CPPUTEST_HOME)/include/CppUTestExt/CppUTestGMock
 CPPUTEST_CPPFLAGS += -I$(CPPUTEST_HOME)/include/CppUTestExt/CppUTestGTest
 
@@ -42,13 +51,13 @@ ifeq ($(CPPUTEST_MAP_FILE), Y)
 endif
 
 
-LD_LIBRARIES += -L$(CPPUTEST_HOME)/lib -lCppUTest
+LD_LIBRARIES += -lCppUTest
 
 #LD_LIBRARIES += -l<my_library>
 #LD_LIBRARIES += -u <my_constructor>
 
 ifeq ($(CPPUTEST_USE_EXTENSIONS), Y)
-	LD_LIBRARIES += -L$(CPPUTEST_HOME)/lib -lCppUTestExt
+	LD_LIBRARIES += -lCppUTestExt
 endif
 
 LD_LIBRARIES += -lstdc++

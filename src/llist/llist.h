@@ -9,7 +9,6 @@
 
 #include <string>
 
-#define nullptr (void*)0
 
 template<typename DataType>
 class LList
@@ -25,7 +24,7 @@ public:
 	void print(std::string & out_buf);
 	bool clean();
 
-private:
+protected:
 	struct Node
 	{
 		Node 	  *next;
