@@ -19,7 +19,7 @@ using namespace std;
 TEST_GROUP(llist_sorted_up)
 {
     std::string result_buffer;
-    LList_SortUP<int> *list;
+    LList<int> *list;
 
     void setup()
     {
