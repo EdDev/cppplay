@@ -12,11 +12,12 @@ Unit Tests:
 
 The implementations are accompanied with unit tests.
 The UT/s are using my favorite UT framework, CppUTest, building and running them from one "make" away.
-Just enter the make command under ./unit_tester (after installing CppUtest on your host, see below)
+Just enter the make command under ./unit_tester (after installing CppUtest on your host)
 
 - Install CppUTest: See http://cpputest.github.io
- `-- Note: You may need to define a system shell variable pointing to the installed CPPUTEST root: CPPUTEST_HOME=D:\cpputest
+-- Note: You may need to define a system shell variable pointing to the installed CPPUTEST root: CPPUTEST_HOME=D:\cpputest
 
 
 You are welcome to feedback and propose enhancements as you see fit.
+
 Contact me: edwardh.dev@gmail.com
