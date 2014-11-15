@@ -13,6 +13,7 @@ TEST_SRC_DIRS = \
 	$(TEST_ROOT)/helpers/src\
 	$(TEST_ROOT)/tests\
 	$(TEST_ROOT)/tests/llist_test\
+	$(TEST_ROOT)/tests/char_stream_req_test\
 #	<Add here the folder that contains the tester source>	
 
 MOCKS_SRC_DIRS =\
