@@ -1,0 +1,38 @@
+The REAME file attempts to explain how the Controller & SM operate.
+Please review the UML included in this folder for further details.
+
+Setup phase:
+
+1. Create a SM: sm = new SDtateMachine();
+2. Create state/s: st = new State**();
+3. Configure the SM with initial state:
+sm->setBaseState(stateNA);
+4. Configure the SM by mapping actions/results
+to the next state (per state):
+sm->mapStateResult2NextState(stateNA,    State::RET_SUCCESS, stateInit);
+The above can be described as follows:
+An event received while in stateNA, triggers the event method on that state,
+and if it returns RET_SUCCESS, the SM current state is moved to stateInit.
+Any other result value, by default keeps the current state unchanged.
+
+5. Create a controller: controller = new CardController();
+6. Create a card/device and bind to controller: card = new Device(controller);
+7. Register the card & the SM it needs to work with to the controller:
+card.devID = controller->regCard(sm);
+The devID is used to identify the card in the controller.
+When notifications arrive from the card, they include the devID and event,
+and the controller can map the devID to its SM.
+
+Runtime:
+1. Start the controller so it will listen to inclomming messages:
+controller->run();
+Usually such a controller will run on a seperated thread, blocking on
+msg_recv();
+2. The card/device sends notifications to the controllen it is bind to:
+card.sendEvent(CardController::EV_EXIST);
+It is usually done through a message service service: msg_send(msg);
+The information sent includes the card devID and the event ID.
+3. The controller receives the message, using the devID determine the SM
+it belongs to and run on it the event. 
+(it actually executes the event method on the current state)
+
