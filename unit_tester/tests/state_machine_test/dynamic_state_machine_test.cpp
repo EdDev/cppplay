@@ -34,25 +34,35 @@ TEST_GROUP(dynamic_sm)
         sMachine->mapStateResult2NextState(stateFault, State::RET_FAIL,    stateInit);
     }
 
-    void setup()
+    void createCardStates()
     {
-        sm         = new DStateMachine();
         stateNA    = new StateNA();
         stateInit  = new StateInit();
         stateReady = new StateReady();
         stateProv  = new StateProv();
         stateFault = new StateFault();
-
-        setupStateMachine(sm);
     }
 
-    void teardown()
+    void destroyCardStates()
     {
         delete stateNA;
         delete stateInit;
         delete stateReady;
         delete stateProv;
         delete stateFault;
+    }
+
+    void setup()
+    {
+        sm = new DStateMachine();
+        createCardStates();
+
+        setupStateMachine(sm);
+    }
+
+    void teardown()
+    {
+        destroyCardStates();
         delete sm;
     }
 };

@@ -1,6 +1,13 @@
 /*
  * card_states.h
  *
+ * This file contains specific states with their relevant events (as methods).
+ * For each state, an event will execute the relevant method,
+ * performing some action and returning a result.
+ * Note: In the below definition, no actions are performed and each method
+ *       returns a specific result. In real usage, an action/method may return
+ *       with different results.
+ *
  *  Created on: Nov 15, 2014
  *      Author: edwardh
  */
