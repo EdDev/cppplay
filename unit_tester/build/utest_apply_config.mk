@@ -15,6 +15,10 @@ ifeq ($(CPPUTEST_ENABLE_C99), Y)
 	CPPUTEST_CFLAGS += -std=c99
 endif
 
+ifeq ($(CPPUTEST_ENABLE_CPP11), Y)
+	CPPUTEST_CXXFLAGS += -std=c++11
+endif
+
 CPPUTEST_CXXFLAGS += -include $(TEST_ROOT)/mocks/include/oper_new_mock.h
 
 ifeq ($(UNAME_OS),  $(MINGW_STR))
